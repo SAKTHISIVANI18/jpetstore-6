@@ -19,13 +19,6 @@ pipeline {
   stage('Deploy') {  
     xldDeploy serverCredentials: 'sakthi', environmentId: 'Environments/DEVS/sakthi', packageId: 'Applications/jpetstore/1.0.3.0'
   }  
-
-       
-
-      
-
-
-
      
 
     }
