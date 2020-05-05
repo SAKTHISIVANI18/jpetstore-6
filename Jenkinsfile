@@ -4,90 +4,25 @@ pipeline {
 
     stages {
 
-      
-
-                     
-     
-
-        stage ('Artifactory configuration') {
-
-            steps {
-
-                rtServer (
-
-                    id: "ARTIFACTORY_SERVER",
-
-                    url: "https://dincric.jfrog.io/artifactory",
-
-                    credentialsId: 'jfrog'
-                
-
-                )
-
-
-
-                rtMavenDeployer (
-
-                    id: "MAVEN_DEPLOYER",
-
-                    serverId: "ARTIFACTORY_SERVER",
-
-                    releaseRepo: "libs-release-local",
-
-                    snapshotRepo: "libs-snapshot-local"
-
-                )
-
-
-
-                rtMavenResolver (
-
-                    id: "MAVEN_RESOLVER",
-
-                    serverId: "ARTIFACTORY_SERVER",
-
-                    releaseRepo: "libs-release",
-
-                    snapshotRepo: "libs-snapshot"
-
-                )
-
-            }
-
-        }
-
-        stage('build and package') {
-            steps {
-                rtMavenRun (
-                    tool: 'maven',
-                     pom: 'pom.xml',
-                    goals: 'clean install package',
-                    deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
-                    )
+        stage('checkout') {
+            steps{
+            sh 'https://github.com/SAKTHISIVANI18/jpetstore-6.git'
             }
         }
-        
-        
-    
-        
-         
-                       
 
+      stage('Package') {  
+    xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: 'jpetstore-1.0.3.0.dar'  
+  }  
+  stage('Publish') {  
+    xldPublishPackage serverCredentials: 'sakthi', darPath: 'jpetstore-1.0.3.0.dar'
+  }  
+  stage('Deploy') {  
+    xldDeploy serverCredentials: 'sakthi', environmentId: 'Environments/DEVS/sakthi', packageId: 'Applications/jpetstore/1.0.3.0'
+  }  
 
        
 
-        
-         stage('deploy') {
-       steps {
-           
-           script {
-               
-           sh ' cp https://dincric.jfrog.io/artifactory/libs-snapshot-local/org/mybatis/jpetstore/6.0.3-SNAPSHOT  /home/dineshreddy99077/noida/apache-tomcat-7.0.103/webapps/'
-               }
-        }
-               
-        }
+      
 
 
 
