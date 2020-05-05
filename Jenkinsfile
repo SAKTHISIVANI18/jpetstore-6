@@ -7,12 +7,12 @@ pipeline {
        
       stage('Package') {  
           steps{
-    xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', warPath: 'jpetstore-1.0.3.0.war'  
+    xldCreatePackage artifactsPath: 'build/libs', warPath: '/var/lib/jenkins/workspace/jpetstore/target/JPetStore.war'  
   } 
       }
   stage('Publish') {  
       steps{
-    xldPublishPackage serverCredentials: 'sakthi', warPath: 'jpetstore-1.0.3.0.war'
+    xldPublishPackage serverCredentials: 'sakthi', warPath: '/var/lib/jenkins/workspace/jpetstore/target/JPetStore.war'
   }  
   }
   stage('Deploy') {  
