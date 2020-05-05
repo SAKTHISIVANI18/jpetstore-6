@@ -4,12 +4,7 @@ pipeline {
 
     stages {
 
-        stage('checkout') {
-            steps{
-            sh 'https://github.com/SAKTHISIVANI18/jpetstore-6.git'
-            }
-        }
-
+       
       stage('Package') {  
           steps{
     xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: 'jpetstore-1.0.3.0.dar'  
