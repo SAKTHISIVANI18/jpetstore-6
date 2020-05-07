@@ -3,7 +3,7 @@
   <application />
   <orchestrator />
   <deployables>
-    <tomcat.War name="/JPetStore.war" file="/JPetStore.war/jpetstore-6.0.3-20200429.080716-44.war">
+    <tomcat.War name="/JPetStore.war">
       <tags>
         <value>JPetStore</value>
       </tags>
