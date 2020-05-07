@@ -7,17 +7,17 @@ pipeline {
        
       stage('Package') {  
           steps{
-    xldCreatePackage artifactsPath: 'target/',manifestPath: 'deployit-manifest.xml', darPath: 'jpetstore-1.0.3.dar'  
+    xldCreatePackage artifactsPath: 'target/',manifestPath: 'deployit-manifest.xml', darPath: 'jpetstore-1.0.6.dar'  
   } 
       }
   stage('Publish') {  
       steps{
-    xldPublishPackage serverCredentials: 'sakthi', darPath: 'jpetstore-1.0.3.dar'
+    xldPublishPackage serverCredentials: 'sakthi', darPath: 'jpetstore-1.0.6.dar'
   }  
   }
   stage('Deploy') {  
       steps{
-    xldDeploy serverCredentials: 'sakthi', environmentId: 'Environments/DEVS/sakthi', packageId: 'Applications/jpetstore/1.0.3.'
+    xldDeploy serverCredentials: 'sakthi', environmentId: 'Environments/DEVS/sakthi', packageId: 'Applications/jpetstore/1.0.6.'
   }  
   }
      
