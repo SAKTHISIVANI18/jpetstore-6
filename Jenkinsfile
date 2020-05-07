@@ -7,12 +7,12 @@ pipeline {
        
       stage('Package') {  
           steps{
-    xldCreatePackage artifactsPath: 'libs-snapshot-local/', warPath: 'libs-snapshot-local/org/mybatis/jpetstore/6.0.3-SNAPSHOT/jpetstore-6.0.3-20200506.042637-9.war'  
+    xldCreatePackage artifactsPath: 'libs-snapshot-local/',manifestPath: 'deployit-manifest.xml', darPath: 'jpetstore-1.0.3.dar'  
   } 
       }
   stage('Publish') {  
       steps{
-    xldPublishPackage serverCredentials: 'sakthi', warPath: 'libs-snapshot-local/org/mybatis/jpetstore/6.0.3-SNAPSHOT/jpetstore-6.0.3-20200506.042637-9.war'
+    xldPublishPackage serverCredentials: 'sakthi', darPath: 'jpetstore-1.0.3.dar'
   }  
   }
   stage('Deploy') {  
