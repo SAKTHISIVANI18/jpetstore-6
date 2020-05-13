@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage application="jpetstore">
-  <version>${project.version}</version>
+<udm.DeploymentPackage version="1.0" application="jpetstore">
+  
   <application />
   <orchestrator />
   <deployables>
