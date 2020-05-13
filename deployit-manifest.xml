@@ -12,6 +12,7 @@
       <preScannedPlaceholders>true</preScannedPlaceholders>
       <placeholders>
          <value>first_placeholder</value>
+        <value>project.version</value>
       </placeholders>
       <checksum>6d87f7f9a934d6805e13a5955312ecd9350c893b6f623f78715cf2a1ebca6b14</checksum>
       <credentials ref="Configuration/localhost" />
